@@ -13,11 +13,11 @@ R = bg+'\033[31m'
 print(O+'''
 \tWEBSOCKET SCANNER
 \tBy : mentalista
-\t  versão Mais rápida (usando rosqueamento, threading)
+\t  Faster version (using threading, threading)
 #'''+GR)
 
 def update():
-		statement = f"[{R}!{GR}] {O}Observe os intervalos de ip atualizando semanalmente\n {G}Você deseja atualizar os intervalos de ip ?{G} "
+		statement = f"[{R}!{GR}] {O}Watch ip ranges updating weekly\n {G}Do you want to update ip ranges ?{G} "
 		for chr in statement:
 			sys.stdout.write(chr)
 			sys.stdout.flush()
@@ -35,18 +35,18 @@ def createlog():
 		updating = update()
 		if updating =='Y':
 			arg = 'a+'
-			status = '[*] atualizando'
+			status = '[*] updating'
 	else:
-		status = 'ola mae !'
+		status = 'Success !'
 		arg = 'a+'
 	with open('.firstusage.log',arg) as f:
 			if len(f.read()) < 1:
-				input(f'-{G}{status}{GR}\n{R}[!] mude para wifi ou conexão de dados para atualizar a lista de ipranges e dê Enter {GR}')
+				input(f'-{G}{status}{GR}\n{R}[!] switch to wifi or data connection to refresh the ipranges list and press Enter {GR}')
 				url ='https://www.cloudflare.com/ips-v4'
 				req = requests.get(url).text
 				ranges = req.split()
 				
-				input(f'{G}[#]Desligue o wifi ou mude para sem dados \n e então dê Enter para continuar ')
+				input(f'{G}[#]Turn off wifi or switch to no data \n and then press Enter to continue ')
 				f.write(str(ranges))
 			else:
 				with open('.firstusage.log',arg) as f:
@@ -120,12 +120,12 @@ def Main():
 				iprange.append(ip)
 		for index in range(len(iprange)):			
 					try:
-						print("{}[INFO] Sondagem... ({}/{}) [{}]{}".format(
+						print("{}[INFO] Polling... ({}/{}) [{}]{}".format(
 						R,index+1,len(iprange),iprange[index],GR))
 						sc=threading.Thread(target=scanner,args=(iprange[index],))
 						sc.start()
 					except KeyboardInterrupt:
-						print('{}Verificação abortada pelo Noob!{}'.format(R,GR))
+						print('{}Check aborted by Noob!{}'.format(R,GR))
 						break
 						
 if __name__=="__main__":
